@@ -521,6 +521,34 @@
            }
         }
 
+        @media (max-width: 768px) {
+           nav ul {
+              display: none;
+              flex-direction: column;
+              background: white;
+              position: absolute;
+              top: 100%;
+              left: 0;
+              width: 100%;
+              box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+              padding: 20px 0;
+              z-index: 999;
+            }
+
+            nav.active ul {
+              display: flex;
+            }
+
+            .cta-button {
+               display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+}
+
+
     </style>
 </head>
 <body>
