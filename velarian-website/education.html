@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velarian Education Services | Study Abroad Assistance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles (Reuse from index.html) */
+        :root {
+            --indigo: #2E3192;
+            --orange: #FF6B35;
+            --sand: #EFE6DD;
+            --green: #1B998B;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--indigo) 0%, var(--green) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--indigo);
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-text span {
+            color: var(--orange);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--indigo);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--orange);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .cta-button:hover {
+            background: #e05a2a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+        
+        /* Education Page Specific Styles */
+        .hero-education {
+            background: linear-gradient(rgba(46, 49, 146, 0.9), rgba(27, 153, 139, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            height: 70vh;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 50px;
+            font-weight: 800;
+            color: var(--indigo);
+            margin-bottom: 20px;
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+        }
+        
+        /* Services Tabs */
+        .services-tabs {
+            margin: 60px 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            background: var(--sand);
+            border: none;
+            padding: 12px 30px;
+            margin: 0 10px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            background: var(--orange);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-content-inner {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .tab-text {
+            flex: 1;
+            padding: 40px;
+            min-width: 300px;
+        }
+        
+        .tab-image {
+            flex: 1;
+            min-width: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        #basic .tab-image {
+            background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+        }
+        
+        #premium .tab-image {
+            background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+        }
+        
+        #vip .tab-image {
+            background-image: url('https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+        }
+        
+        .tab-text h3 {
+            font-size: 28px;
+            color: var(--indigo);
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .tab-text ul {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .tab-text ul li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .tab-text ul li:hover {
+            transform: translateX(5px);
+        }
+        
+        .tab-text ul li i {
+            color: var(--green);
+            position: absolute;
+            left: 0;
+            top: 5px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #e05a2a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        /* Additional Services */
+        .add-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .add-service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .add-service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .add-service-card i {
+            font-size: 40px;
+            color: var(--indigo);
+            margin-bottom: 20px;
+        }
+        
+        .add-service-card h3 {
+            color: var(--indigo);
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-weight: 700;
+            color: var(--orange);
+            margin-top: 20px;
+        }
+        
+        /* Process Section */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--orange);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .process-step h3 {
+            color: var(--indigo);
+            margin-bottom: 15px;
+        }
+
+         /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h4 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: var(--sand);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--orange);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--orange);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--orange);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #777;
+        }
+        
+        /* Ensure smooth scrolling for all anchor links */
+        html {
+           scroll-behavior: smooth;
+        }
+
+        /* Highlight the contact form when navigated to */
+        :target {
+           animation: highlight 1.5s ease;
+        }
+
+        @keyframes highlight {
+            0% { background-color: rgba(239, 230, 221, 1); }
+            50% { background-color: rgba(239, 230, 221, 0.8); }
+            100% { background-color: rgba(239, 230, 221, 1); }
+        }
+
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+           .hero-education {
+            height: 60vh; /* Increased for better visibility */
+            padding-top: 100px; /* More space below fixed header */
+          }
+    
+           .tab-buttons {
+           flex-direction: column;
+           gap: 10px;
+          }
+    
+           .tab-btn {
+           width: 100%;
+           margin: 5px 0;
+           }
+           .tab-content-inner {
+             flex-direction: column;
+           }
+    
+           .tab-image {
+            min-height: 250px;
+           }
+    
+           .hero-buttons {
+           flex-direction: column;
+           align-items: center;
+           }
+    
+           .process-steps {
+            grid-template-columns: 1fr;
+           }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header (Copy from index.html) -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">V</div>
+                <div class="logo-text">Velar<span>ian</span></div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">Our Story</a></li>
+                    <li><a href="index.html#values">Values</a></li>
+                    <li><a href="#index.html#vision">Vision</a></li>
+                    <li><a href="#contact-form">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button class="cta-button" onclick="window.location.href='index.html#contact-form'">Join the Movement</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-education">
+        <div class="container">
+            <div class="hero-content">
+                 <h1>Global Education Pathways</h1>
+                 <p>We make international education accessible and affordable for African students</p>
+           </div>
+        </div>
+    </section>
+    
+    <!-- Service Packages -->
+    <section class="all-services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Service Packages</h2>
+                <p>Choose the level of support that matches your needs and budget</p>
+            </div>
+            
+            <div class="services-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="basic">Basic</button>
+                    <button class="tab-btn" data-tab="premium">Premium</button>
+                    <button class="tab-btn" data-tab="vip">VIP</button>
+                </div>
+                
+                <!-- Basic Package -->
+                <div class="tab-content active" id="basic">
+                    <div class="tab-content-inner">
+                        <div class="tab-text">
+                            <h3>Basic Package - 50,000 TZS</h3>
+                            <p>Ideal for self-starters who need expert guidance on key steps</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> 60-minute strategy session</li>
+                                <li><i class="fas fa-check"></i> Personalized university shortlist (5 options)</li>
+                                <li><i class="fas fa-check"></i> Document preparation checklist</li>
+                                <li><i class="fas fa-check"></i> Application review for 1 university</li>
+                                <li><i class="fas fa-check"></i> Email support (2-week response time)</li>
+                            </ul>
+                            <a href="#contact-form" class="btn cta-button">Start Basic Package</a>
+                        </div>
+                        <div class="tab-image"></div>
+                    </div>
+                </div>
+                
+                <!-- Premium Package -->
+                <div class="tab-content" id="premium">
+                    <div class="tab-content-inner">
+                        <div class="tab-text">
+                            <h3>Premium Package - 150,000 TZS</h3>
+                            <div class="guarantee-badge">
+                            <i class="fas fa-shield-alt"></i> 95% Visa Approval Rate
+                            </div>
+                            <p>Complete hands-on support from application to acceptance</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Everything in Basic</li>
+                                <li><i class="fas fa-check"></i> Professionally written motivation letter</li>
+                                <li><i class="fas fa-check"></i> Full application submission (3 universities)</li>
+                                <li><i class="fas fa-check"></i> Scholarship application support</li>
+                                <li><i class="fas fa-check"></i> Visa documentation package</li>
+                                <li><i class="fas fa-check"></i> Priority support (48hr response)</li>
+                                <li><i class="fas fa-check"></i> Interview preparation</li>
+                            </ul>
+                            <a href="#contact-form" class="btn cta-button">Start Premium Package</a>
+                            <p style="margin-top:15px;font-size:14px;"><i class="fas fa-star"></i> Most Popular Choice</p>
+                        </div>
+                        <div class="tab-image"></div>
+                    </div>
+                </div>
+                    <style>
+                     .guarantee-badge {
+                      background: var(--green);
+                      color: white;
+                      padding: 5px 15px;
+                      border-radius: 20px;
+                      display: inline-block;
+                      margin-bottom: 15px;
+                      font-size: 14px;
+                     }
+                     </style>
+                
+                <!-- VIP Package -->
+                <div class="tab-content" id="vip">
+                    <div class="tab-content-inner">
+                        <div class="tab-text">
+                            <h3>VIP Concierge - 300,000 TZS</h3>
+                            <p>White-glove service with guaranteed admission to top schools</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Everything in Premium</li>
+                                <li><i class="fas fa-check"></i> Guaranteed admission (or 50% refund)</li>
+                                <li><i class="fas fa-check"></i> Unlimited university applications</li>
+                                <li><i class="fas fa-check"></i> 1-on-1 visa interview coaching</li>
+                                <li><i class="fas fa-check"></i> Pre-departure cultural orientation</li>
+                                <li><i class="fas fa-check"></i> Accommodation assistance</li>
+                                <li><i class="fas fa-check"></i> 24/7 emergency support</li>
+                                <li><i class="fas fa-check"></i> Airport pickup coordination</li>
+                            </ul>
+                            <a href="#contact-form" class="btn cta-button">Start VIP Package</a>
+                        </div>
+                        <div class="tab-image"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Additional Services -->
+    <section class="additional-services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Additional Services</h2>
+                <p>Custom solutions for your specific needs</p>
+            </div>
+            <div class="add-services-grid">
+                <div class="add-service-card">
+                    <i class="fas fa-file-signature"></i>
+                    <h3>Document Translation</h3>
+                    <p>Certified translation of academic records and certificates with notarization.</p>
+                    <p class="price">20,000 TZS per document</p>
+                </div>
+                <div class="add-service-card">
+                    <i class="fas fa-passport"></i>
+                    <h3>Visa Application</h3>
+                    <p>Complete visa application preparation with mock interviews.</p>
+                    <p class="price">75,000 TZS</p>
+                </div>
+                <div class="add-service-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Housing Assistance</h3>
+                    <p>Secure verified accommodation near your campus before arrival.</p>
+                    <p class="price">50,000 TZS + 1st month's rent</p>
+                </div>
+                <div class="add-service-card">
+                    <i class="fas fa-plane"></i>
+                    <h3>Travel Coordination</h3>
+                    <p>Flight booking, insurance, and airport transfer arrangements.</p>
+                    <p class="price">30,000 TZS + travel costs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Process -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our 6-Step Process</h2>
+                <p>From dream to enrollment - we guide you at every stage</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Discovery Call</h3>
+                    <p>We discuss your goals, budget, and preferences</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Academic Audit</h3>
+                    <p>Comprehensive evaluation of your transcripts and credentials</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>University Matching</h3>
+                    <p>Strategic selection of programs with highest admission chances</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Application Crafting</h3>
+                    <p>Polishing every component to present your best self</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3>Visa Mastery</h3>
+                    <p>Navigating complex requirements with 95% approval rate</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <h3>Pre-Departure</h3>
+                    <p>Cultural orientation, housing, and logistics preparation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+       <!-- Contact Form Section -->
+   <section id="contact-form" class="contact-section" style="background: #EFE6DD; padding: 80px 0;">
+      <div class="container">
+      <h2 style="text-align:center; font-size: 36px; color: #2E3192; margin-bottom: 40px;">Contact Us</h2>
+      <form action="https://formspree.io/f/meokqkpk" method="POST" style="max-width:700px; margin:auto; background:white; padding:30px; border-radius:12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+      <input type="hidden" name="_subject" value="New Education Service Inquiry">
+      <input type="hidden" name="_replyto" value="akidamchomvu44@gmail.com">
+        <div style="margin-bottom:20px;">
+        <label for="name">Full Name</label><br>
+        <input type="text" name="name" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
+      </div>
+      <div style="margin-bottom:20px;">
+        <label for="email">Email</label><br>
+        <input type="email" name="email" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
+      </div>
+      <div style="margin-bottom:20px;">
+        <label for="whatsapp">WhatsApp Number</label><br>
+        <input type="text" name="whatsapp" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
+      </div>
+      <div style="margin-bottom:20px;">
+        <label for="package">Service Package</label><br>
+        <select name="package" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
+          <option value="Basic">Basic (50,000 TZS)</option>
+          <option value="Premium">Premium (150,000 TZS)</option>
+          <option value="VIP">VIP (300,000 TZS)</option>
+        </select>
+      </div>
+      <div style="margin-bottom:20px;">
+        <label for="message">Message</label><br>
+        <textarea name="message" rows="4" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;"></textarea>
+      </div>
+      <button type="submit" class="cta-button">Send Inquiry</button>
+       </form>
+     </div>
+    </section>
+
+    <!-- Footer (Copy from index.html) -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Velarian</h4>
+                    <p>Building doors where others see walls. Creating generational impact from Africa to the world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Impact Stories</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Industries</h4>
+                    <ul class="footer-links">
+                        <li><a href="education.html">Education</a></li>
+                        <li><a href="#">Technology</a></li>
+                        <li><a href="#">Agritech</a></li>
+                        <li><a href="#">Fintech</a></li>
+                        <li><a href="#">Renewable Energy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@velarian.org</li>
+                        <li><i class="fas fa-phone"></i> +255 745 181 797</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Dar es Salaam, Tanzania</li>
+                        <li><i class="fas fa-globe"></i> Warsaw, Poland</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023-2025 Velarian. All rights reserved. Building legacy from Africa to the world.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Enhanced Tab Functionality
+       document.querySelectorAll('.tab-btn').forEach(btn => {
+       btn.addEventListener('click', () => {
+        const tabId = btn.dataset.tab;
+        
+        // Update buttons
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Update tabs with animation
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            if(tab.id === tabId) {
+                tab.style.opacity = 0;
+                setTimeout(() => {
+                    tab.classList.add('active');
+                    tab.style.opacity = 1;
+                }, 300);
+            } else {
+                tab.classList.remove('active');
+             }
+           });
+           });
+        });
+
+        // Add animation to process steps
+         document.querySelectorAll('.process-step').forEach((step, index) => {
+        step.style.transitionDelay = `${index * 100}ms`;
+       });
+        
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    </script>
+       <script type="application/ld+json">
+         {
+          "@context": "https://schema.org",
+           "@type": "EducationalOrganization",
+           "name": "Velarian Education Services",
+           "description": "Helping Tanzanian students study abroad affordably",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Dar es Salaam",
+             "addressCountry": "TZ"
+              }
+          }
+        </script>
+    
+         <a href="https://wa.me/255745181797" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+    <style>
+     .whatsapp-float {
+       position: fixed;
+       bottom: 30px;
+       right: 30px;
+       width: 60px;
+       height: 60px;
+       background: #25D366;
+       color: white;
+       border-radius: 50%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-size: 30px;
+       box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+       z-index: 1000;
+       animation: pulse 2s infinite;
+       transition: all 0.3s;
+      }
+      .whatsapp-float:hover {
+     transform: scale(1.1) rotate(10deg);
+     }
+       @keyframes pulse {
+       0% { transform: scale(1); }
+       50% { transform: scale(1.1); }
+       100% { transform: scale(1); }
+       }
+    </style>
+</body>
+</html>
