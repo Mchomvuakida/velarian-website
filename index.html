@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velarian - Where Walls Become Doors</title>
+    <meta name="description" content="Velarian empowers dreams through accessible global opportunities. Building Africa's impact-driven global conglomerate.">
+    <meta name="keywords" content="education, technology, Africa, opportunities, Tanzania, global education">
+    <meta property="og:title" content="Velarian - Where Walls Become Doors">
+    <meta property="og:description" content="Empowering dreams through accessible global opportunities">
+    <meta property="og:image" content="https://yourdomain.com/images/logo.png">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="images/png" href="images/fav.png" sizes="67x67">
+    <link rel="preload" href="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" as="image">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXX');
+    </script>
     <style>
         :root {
             --indigo: #2E3192;
@@ -52,6 +68,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
+            position: relative;
         }
         
         .logo {
@@ -149,6 +166,15 @@
             background: #e05a2a;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--indigo);
+            z-index: 1001;
         }
         
         /* Hero Section */
@@ -352,6 +378,7 @@
             text-align: center;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            position: relative;
         }
         
         .industry-card:hover {
@@ -589,9 +616,19 @@
             .founder-card {
                 max-width: 100%;
             }
+            
+            .founder-quote {
+                flex-direction: column;
+                text-align: center;
+            }
         }
         
         @media (max-width: 768px) {
+            .hero {
+                min-height: 100vh;
+                padding: 120px 0 80px;
+            }
+            
             .hero h1 {
                 font-size: 40px;
             }
@@ -604,29 +641,58 @@
                 font-size: 36px;
             }
             
-            nav ul {
-                display: none;
-            }
-            
+            /* Mobile Menu Styles */
             .menu-toggle {
                 display: block;
-                font-size: 24px;
-                cursor: pointer;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+            
+            nav ul.show-mobile {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .header-container .cta-button {
+                order: 1;
+                margin-left: auto;
+                margin-right: 15px;
             }
         }
         
         @media (max-width: 576px) {
-            .hero {
-                height: auto;
-                padding: 120px 0 80px;
-            }
-            
             .hero h1 {
                 font-size: 32px;
             }
             
             .stat-number {
                 font-size: 40px;
+            }
+            
+            .header-container {
+                padding: 15px 0;
+            }
+            
+            .logo img {
+                height: 60px;
             }
         }
     </style>
@@ -650,6 +716,9 @@
             </nav>
             
             <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Join the Movement</button>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
@@ -683,7 +752,7 @@
                     <p>"I couldn't fly planes, so I'm building runways for others to take off."</p>
                     
                     <div class="founder-quote">
-                        <img src="images/akida.JPG" alt="Akida, founder"style="width:80px; height:80px; object-fit:cover; border-radius:50%; border:3px solid #EFE6DD;" >
+                        <img src="images/akida.JPG" alt="Akida, founder of Velarian" style="width:80px; height:80px; object-fit:cover; border-radius:50%; border:3px solid #EFE6DD;">
                         <div>
                             <div class="quote-text">"Velarian isn't just a business—it's a generational promise."</div>
                             <div class="quote-author">Akida, Founder & CEO</div>
@@ -882,10 +951,10 @@
                     <h4>Velarian</h4>
                     <p>Building doors where others see walls. Creating generational impact from Africa to the world.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 
@@ -929,7 +998,7 @@
     </footer>
 
     <!-- WhatsApp Float -->
-   <a href="https://wa.me/255745181797" class="whatsapp-float">
+   <a href="https://wa.me/255745181797" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
     <style>
@@ -971,6 +1040,13 @@
                      document.querySelector(this.getAttribute('href')).scrollIntoView({
                          behavior: 'smooth'
                      });
+                     
+                     // Close mobile menu if open
+                     const navMenu = document.querySelector('nav ul');
+                     if (navMenu.classList.contains('show-mobile')) {
+                         navMenu.classList.remove('show-mobile');
+                         document.querySelector('.menu-toggle i').className = 'fas fa-bars';
+                     }
                  }
              });
         });
@@ -988,24 +1064,24 @@
         });
 
         // Mobile menu toggle
-         const menuToggle = document.querySelector('.menu-toggle');
-         const navMenu = document.querySelector('nav ul');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('nav ul');
 
-         menuToggle.addEventListener('click', () => {
-          navMenu.classList.toggle('show-mobile');
-          menuToggle.innerHTML = navMenu.classList.contains('show-mobile') ? 
-          '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-         });
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('show-mobile');
+            menuToggle.innerHTML = navMenu.classList.contains('show-mobile') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
 
-         // Close menu when clicking on a link
-         document.querySelectorAll('nav ul li a').forEach(link => {
-          link.addEventListener('click', () => {
-           if (window.innerWidth <= 992) {
-               navMenu.classList.remove('show-mobile');
-               menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-             }
-          });
-         });
+        // Close menu when clicking on a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('show-mobile');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
 
         // Animation on scroll
         const observer = new IntersectionObserver((entries) => {
@@ -1023,7 +1099,6 @@
         });
     
         // Button click handlers
-       // Button click handlers - more comprehensive version
         document.querySelectorAll('.cta-button').forEach(button => {
             button.addEventListener('click', function(e) {
                // If button is inside a form or is a link, let it behave normally
@@ -1050,36 +1125,18 @@
             });
         });
 
+        // Form submission handling
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                const submitButton = this.querySelector('button[type="submit"]');
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                
+                // In a real implementation, you would handle the form submission here
+                // and show success/error messages to the user
+            });
+        }
     </script>
-    
-    <style>
-    @media (max-width: 768px) {
-        nav ul {
-            display: none;
-            position: absolute;
-            top: 80px;
-            left: 0;
-            width: 100%;
-            background: white;
-            flex-direction: column;
-            padding: 20px 0;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            z-index: 999;
-        }
-        
-        nav ul.show-mobile {
-            display: flex;
-        }
-        
-        .menu-toggle {
-            display: block !important;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .header-container nav ul {
-        display: none;
-        }
-    }
-    </style>
 </body>
 </html>
