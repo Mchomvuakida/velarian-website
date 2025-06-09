@@ -4,11 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velarian Education Services | Study Abroad Assistance</title>
+    <meta name="description" content="Velarian makes international education accessible for African students through affordable study abroad packages and visa assistance.">
+    <meta name="keywords" content="study abroad, Tanzania education, university application, student visa, scholarship assistance">
     <link rel="icon" type="images/png" href="images/fav.png" sizes="67x67">
+    <link rel="preload" href="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" as="image">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZ125D2TYT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GZ125D2TYT');
+    </script>
     <style>
-        /* Base Styles (Reuse from index.html) */
+        /* Base Styles */
         :root {
             --indigo: #2E3192;
             --orange: #FF6B35;
@@ -58,6 +69,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
+            position: relative;
         }
         
         .logo {
@@ -77,9 +89,8 @@
             border: none;
             font-size: 24px;
             color: var(--indigo);
-            position: absolute;
-            right: 15px;
-            top: 15px;
+            cursor: pointer;
+            z-index: 1001;
         }
         
         nav ul {
@@ -127,6 +138,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            text-decoration: none;
+            display: inline-block;
         }
         
         .cta-button:hover {
@@ -211,10 +224,13 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .tab-content.active {
             display: block;
+            opacity: 1;
         }
         
         .tab-content-inner {
@@ -349,6 +365,14 @@
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .process-step.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .step-number {
@@ -370,7 +394,18 @@
             margin-bottom: 15px;
         }
 
-         /* Footer */
+        /* Guarantee Badge */
+        .guarantee-badge {
+            background: var(--green);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        /* Footer */
         footer {
             background: var(--dark);
             color: white;
@@ -451,105 +486,164 @@
             color: #777;
         }
         
-        /* Ensure smooth scrolling for all anchor links */
-        html {
-           scroll-behavior: smooth;
+        /* Contact Form */
+        .contact-section {
+            background: var(--sand);
+            padding: 80px 0;
         }
-
-        /* Highlight the contact form when navigated to */
-        :target {
-           animation: highlight 1.5s ease;
-        }
-
-        @keyframes highlight {
-            0% { background-color: rgba(239, 230, 221, 1); }
-            50% { background-color: rgba(239, 230, 221, 0.8); }
-            100% { background-color: rgba(239, 230, 221, 1); }
-        }
-
         
-        /* Responsive */
-        @media (max-width: 768px) {
-           .hero-education {
-            height: 60vh; /* Increased for better visibility */
-            padding-top: 100px; /* More space below fixed header */
-          }
-    
-           .tab-buttons {
-           flex-direction: column;
-           gap: 10px;
-          }
-    
-           .tab-btn {
-           width: 100%;
-           margin: 5px 0;
-           }
-           .tab-content-inner {
-             flex-direction: column;
-           }
-    
-           .tab-image {
-            min-height: 250px;
-           }
-    
-           .hero-buttons {
-           flex-direction: column;
-           align-items: center;
-           }
-    
-           .process-steps {
-            grid-template-columns: 1fr;
-           }
+        .contact-section h2 {
+            text-align: center;
+            font-size: 36px;
+            color: var(--indigo);
+            margin-bottom: 40px;
+            font-family: 'Playfair Display', serif;
         }
-
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 38px;
+            }
+            
+            .section-header h2 {
+                font-size: 42px;
+            }
+            
+            .tab-text {
+                padding: 30px;
+            }
+        }
+        
         @media (max-width: 768px) {
-           nav ul {
-              display: none;
-              flex-direction: column;
-              background: white;
-              position: absolute;
-              top: 100%;
-              left: 0;
-              width: 100%;
-              box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-              padding: 20px 0;
-              z-index: 999;
+            .hero-education {
+                height: 60vh;
+                padding-top: 100px;
             }
-
-            nav.active ul {
-              display: flex;
-            }
-
-            .cta-button {
-               display: none;
-            }
-
+            
             .mobile-menu-btn {
                 display: block;
             }
-}
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .header-container .cta-button {
+                display: none;
+            }
+            
+            .tab-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+            
+            .tab-content-inner {
+                flex-direction: column;
+            }
+            
+            .tab-image {
+                min-height: 250px;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header h2 {
+                font-size: 36px;
+            }
+        }
 
-
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            
+            .section-header h2 {
+                font-size: 30px;
+            }
+            
+            .logo img {
+                height: 60px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Header (Copy from index.html) -->
+    <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
                 <img src="images/logo.png" alt="Velarian Education Services" width="80">
             </div>
+            
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="index.html#about">Our Story</a></li>
                     <li><a href="index.html#values">Values</a></li>
-                    <li><a href="#index.html#vision">Vision</a></li>
+                    <li><a href="index.html#vision">Vision</a></li>
                     <li><a href="#contact-form">Contact</a></li>
                 </ul>
             </nav>
             
             <button class="cta-button" onclick="window.location.href='index.html#contact-form'">Join the Movement</button>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
@@ -559,6 +653,7 @@
             <div class="hero-content">
                  <h1>Velarian Education Pathways</h1>
                  <p>We make international education accessible and affordable for African students</p>
+                 <a href="#contact-form" class="cta-button">Get Started Today</a>
            </div>
         </div>
     </section>
@@ -591,7 +686,7 @@
                                 <li><i class="fas fa-check"></i> Application review for 1 university</li>
                                 <li><i class="fas fa-check"></i> Email support (2-week response time)</li>
                             </ul>
-                            <a href="#contact-form" class="btn cta-button">Start Basic Package</a>
+                            <a href="#contact-form" class="btn">Start Basic Package</a>
                         </div>
                         <div class="tab-image"></div>
                     </div>
@@ -603,7 +698,7 @@
                         <div class="tab-text">
                             <h3>Premium Package - 150,000 TZS</h3>
                             <div class="guarantee-badge">
-                            <i class="fas fa-shield-alt"></i> 95% Visa Approval Rate
+                                <i class="fas fa-shield-alt"></i> 95% Visa Approval Rate
                             </div>
                             <p>Complete hands-on support from application to acceptance</p>
                             <ul>
@@ -615,23 +710,12 @@
                                 <li><i class="fas fa-check"></i> Priority support (48hr response)</li>
                                 <li><i class="fas fa-check"></i> Interview preparation</li>
                             </ul>
-                            <a href="#contact-form" class="btn cta-button">Start Premium Package</a>
+                            <a href="#contact-form" class="btn">Start Premium Package</a>
                             <p style="margin-top:15px;font-size:14px;"><i class="fas fa-star"></i> Most Popular Choice</p>
                         </div>
                         <div class="tab-image"></div>
                     </div>
                 </div>
-                    <style>
-                     .guarantee-badge {
-                      background: var(--green);
-                      color: white;
-                      padding: 5px 15px;
-                      border-radius: 20px;
-                      display: inline-block;
-                      margin-bottom: 15px;
-                      font-size: 14px;
-                     }
-                     </style>
                 
                 <!-- VIP Package -->
                 <div class="tab-content" id="vip">
@@ -649,7 +733,7 @@
                                 <li><i class="fas fa-check"></i> 24/7 emergency support</li>
                                 <li><i class="fas fa-check"></i> Airport pickup coordination</li>
                             </ul>
-                            <a href="#contact-form" class="btn cta-button">Start VIP Package</a>
+                            <a href="#contact-form" class="btn">Start VIP Package</a>
                         </div>
                         <div class="tab-image"></div>
                     </div>
@@ -736,54 +820,54 @@
         </div>
     </section>
     
-       <!-- Contact Form Section -->
-   <section id="contact-form" class="contact-section" style="background: #EFE6DD; padding: 80px 0;">
-      <div class="container">
-      <h2 style="text-align:center; font-size: 36px; color: #2E3192; margin-bottom: 40px;">Contact Us</h2>
-      <form action="https://formspree.io/f/meokqkpk" method="POST" style="max-width:700px; margin:auto; background:white; padding:30px; border-radius:12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
-      <input type="hidden" name="_subject" value="New Education Service Inquiry">
-      <input type="hidden" name="_replyto" value="akidamchomvu44@gmail.com">
-        <div style="margin-bottom:20px;">
-        <label for="name">Full Name</label><br>
-        <input type="text" name="name" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
-      </div>
-      <div style="margin-bottom:20px;">
-        <label for="email">Email</label><br>
-        <input type="email" name="email" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
-      </div>
-      <div style="margin-bottom:20px;">
-        <label for="whatsapp">WhatsApp Number</label><br>
-        <input type="text" name="whatsapp" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
-      </div>
-      <div style="margin-bottom:20px;">
-        <label for="package">Service Package</label><br>
-        <select name="package" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
-          <option value="Basic">Basic (50,000 TZS)</option>
-          <option value="Premium">Premium (150,000 TZS)</option>
-          <option value="VIP">VIP (300,000 TZS)</option>
-        </select>
-      </div>
-      <div style="margin-bottom:20px;">
-        <label for="message">Message</label><br>
-        <textarea name="message" rows="4" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;"></textarea>
-      </div>
-      <button type="submit" class="cta-button">Send Inquiry</button>
-       </form>
-     </div>
+    <!-- Contact Form Section -->
+    <section id="contact-form" class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form action="https://formspree.io/f/meokqkpk" method="POST" style="max-width:700px; margin:auto; background:white; padding:30px; border-radius:12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+                <input type="hidden" name="_subject" value="New Education Service Inquiry">
+                <input type="hidden" name="_replyto" value="akidamchomvu44@gmail.com">
+                <div style="margin-bottom:20px;">
+                    <label for="name">Full Name</label><br>
+                    <input type="text" name="name" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label for="email">Email</label><br>
+                    <input type="email" name="email" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label for="whatsapp">WhatsApp Number</label><br>
+                    <input type="text" name="whatsapp" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label for="package">Service Package</label><br>
+                    <select name="package" required style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;">
+                        <option value="Basic">Basic (50,000 TZS)</option>
+                        <option value="Premium">Premium (150,000 TZS)</option>
+                        <option value="VIP">VIP (300,000 TZS)</option>
+                    </select>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label for="message">Message</label><br>
+                    <textarea name="message" rows="4" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;"></textarea>
+                </div>
+                <button type="submit" class="cta-button">Send Inquiry</button>
+            </form>
+        </div>
     </section>
 
-    <!-- Footer (Copy from index.html) -->
-    <footer id="contact">
+    <!-- Footer -->
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h4>Velarian</h4>
                     <p>Building doors where others see walls. Creating generational impact from Africa to the world.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 
@@ -826,96 +910,133 @@
         </div>
     </footer>
     
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/255745181797" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
     <!-- JavaScript -->
     <script>
         // Enhanced Tab Functionality
-       document.querySelectorAll('.tab-btn').forEach(btn => {
-       btn.addEventListener('click', () => {
-        const tabId = btn.dataset.tab;
-        
-        // Update buttons
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        // Update tabs with animation
-        document.querySelectorAll('.tab-content').forEach(tab => {
-            if(tab.id === tabId) {
-                tab.style.opacity = 0;
-                setTimeout(() => {
-                    tab.classList.add('active');
-                    tab.style.opacity = 1;
-                }, 300);
-            } else {
-                tab.classList.remove('active');
-             }
-           });
-           });
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+                
+                // Update buttons
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update tabs with animation
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    if(tab.id === tabId) {
+                        tab.style.opacity = 0;
+                        setTimeout(() => {
+                            tab.classList.add('active');
+                            tab.style.opacity = 1;
+                        }, 300);
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+            });
         });
 
-        // Add animation to process steps
-         document.querySelectorAll('.process-step').forEach((step, index) => {
-        step.style.transitionDelay = `${index * 100}ms`;
-       });
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Change icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Animate process steps on scroll
+        const animateProcessSteps = () => {
+            const processSteps = document.querySelectorAll('.process-step');
+            const triggerBottom = window.innerHeight / 5 * 4;
+            
+            processSteps.forEach((step, index) => {
+                const stepTop = step.getBoundingClientRect().top;
+                
+                if (stepTop < triggerBottom) {
+                    setTimeout(() => {
+                        step.classList.add('animated');
+                    }, index * 100);
+                }
+            });
+        };
+        
+        // Initial check
+        animateProcessSteps();
+        
+        // Check on scroll
+        window.addEventListener('scroll', animateProcessSteps);
         
         // Smooth scrolling for all links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
+                if (this.classList.contains('cta-button')) return;
+                
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
             });
         });
-
-        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
-        document.querySelector('nav').classList.toggle('active');
-        });
-
+        
+        // Form submission handling
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                const submitButton = this.querySelector('button[type="submit"]');
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                
+                // In a real implementation, you would handle the form submission here
+                // and show success/error messages to the user
+            });
+        }
     </script>
-       <script type="application/ld+json">
-         {
-          "@context": "https://schema.org",
-           "@type": "EducationalOrganization",
-           "name": "Velarian Education Services",
-           "description": "Helping Tanzanian students study abroad affordably",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Dar es Salaam",
-             "addressCountry": "TZ"
-              }
-          }
-        </script>
     
-         <a href="https://wa.me/255745181797" class="whatsapp-float">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-    <style>
-     .whatsapp-float {
-       position: fixed;
-       bottom: 30px;
-       right: 30px;
-       width: 60px;
-       height: 60px;
-       background: #25D366;
-       color: white;
-       border-radius: 50%;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       font-size: 30px;
-       box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-       z-index: 1000;
-       animation: pulse 2s infinite;
-       transition: all 0.3s;
-      }
-      .whatsapp-float:hover {
-     transform: scale(1.1) rotate(10deg);
-     }
-       @keyframes pulse {
-       0% { transform: scale(1); }
-       50% { transform: scale(1.1); }
-       100% { transform: scale(1); }
-       }
-    </style>
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Velarian Education Services",
+        "description": "Helping Tanzanian students study abroad affordably",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Dar es Salaam",
+            "addressCountry": "TZ"
+        },
+        "offers": {
+            "@type": "Offer",
+            "name": "Study Abroad Assistance",
+            "price": "50000",
+            "priceCurrency": "TZS"
+        }
+    }
+    </script>
 </body>
 </html>
